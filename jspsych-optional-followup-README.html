@@ -368,12 +368,24 @@ kbd {
 
 <h3 id="toc_3">Example</h3>
 
-<div><pre><code class="language-none">function hasHalfSiblings () {
-      // use the result from the sixth trial in the timeline; change the index as needed.
-      var trialResult = jsPsych.data.getData().values()[5];
+<div><pre><code class="language-none">var demographics = {
+        type: &quot;dropdown&quot;,
+        questions: [
+{
+  text: &#39;Are you part of a pair of twins, trio of triplets, etc?&#39;,
+  options: [&#39;Yes&#39;, &#39;No&#39;],
+  allowMultipleSelections: false,
+  required: true,
+  placeholder: &#39;Select&#39;
+
+}]};
+
+function hasHalfSiblings () {
+      // use the result from the first trial in the timeline; change the index as needed.
+      var trialResult = jsPsych.data.getData().values()[0];
       var results= trialResult.rawResponses;
-      // get the answer to the third question;
-      var questionAnswers = results[&#39;A2&#39;]; 
+      // get the answer to the first question;
+      var questionAnswers = results[&#39;A0&#39;]; 
      return questionAnswers.indexOf(&#39;Yes&#39;) !== -1;
     };
     
@@ -386,7 +398,10 @@ var followup = {
       rows: [10],   
       columns: [50]   
     } 
-    </code></pre></div>
+    
+var timeline = [];
+timeline.push(demographics);
+timeline.push(followup);</code></pre></div>
 
 
 
